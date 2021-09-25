@@ -1,3 +1,5 @@
+<p align="center"><img src="https://i.imgur.com/Uo1Ad45.png" /></p>
+
 # Image Encoder
 
 Encode a string or a file to an image.
