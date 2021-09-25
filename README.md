@@ -35,6 +35,7 @@ python3 decode.py PATH
 
 ## Todo
 
+- [ ] If encoding a file that is already encoded, overwrite the encoded content
 - [ ] Add support for encoding a file type and creating a file with that type and content.
 - [ ] Add support for files with multiple dots
 - [ ] Add support for embedding images in other images
