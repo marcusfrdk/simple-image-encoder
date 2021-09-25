@@ -6,6 +6,7 @@ def get_arguments() -> dict:
     parser.add_argument("path", help="path to the image to be encoded, must be jpg or png")
     parser.add_argument("-s", "--string", dest="string", metavar="", help="store the string in an image")
     parser.add_argument("-f", "--file", dest="file", metavar="", help="stringify a file and store it in an image")
+    parser.add_argument("-n", "--name", dest="name", metavar="", help="saves the encoded image with the name, will overwrite any existing file with the same name.")
     return parser.parse_args()
 
 
@@ -48,17 +49,21 @@ def extract_path(path: str) -> tuple:
     return prepath, name, extension
 
 
-def encode(path: str, input: str) -> None:
+def encode(args: dict, input: str) -> None:
     try:
-        lines = open(path, "rb").readlines()
-        prepath, name, extension = extract_path(path)
+        lines = open(args.path, "rb").readlines()
+        prepath, name, extension = extract_path(args.path)
 
         new_name = name + "-encoded" + f".{extension}"
         number = 1
 
-        # Make sure file does not exist
-        while os.path.exists(new_name):
-            new_name = name + "-encoded" + f"-{number}" + f".{extension}"
+        if args.name:
+            new_name = args.name + f".{extension}"
+        else:
+            # Make sure file does not exist
+            while os.path.exists(new_name):
+                new_name = name + "-encoded" + f"-{number}" + f".{extension}"
+                number += 1
 
         # Encoode file
         with open(new_name, "wb") as encoded_image:
@@ -75,7 +80,7 @@ def main() -> None:
         input = parse_input(args)
 
         if input:
-            encode(args.path, input)
+            encode(args, input)
         else:
             print("Nothing to encode, please use the -s or -f flags.")
     else:
