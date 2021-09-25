@@ -1,6 +1,6 @@
 # Image Encoder
 
-Store a string or a file in an image.
+Encode a string or a file to an image.
 
 ## Requirements
 
@@ -8,16 +8,36 @@ Store a string or a file in an image.
 
 ## How to use
 
-```python3
-python
+### Encode
+
+```bash
+python3 encode.py PATH
+```
+
+#### Required Flags
+
+_One of the following._
+
+- -s, --string -> String to be encoded
+- -f, --file -> File to be encoded
+
+#### Optional Flags
+
+- -n, --name -> Name of the output file, will overwrite a file if it exists.
+
+### Decode
+
+```bash
+python3 decode.py PATH
 ```
 
 ## Todo
 
+- [ ] Add support for encoding a file type and creating a file with that type and content.
 - [ ] Add support for files with multiple dots
 - [ ] Add support for embedding images in other images
 
-## Credits
+## Credit
 
 ### Example image
 
