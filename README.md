@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.imgur.com/Uo1Ad45.png" /></p>
+<p align="center"><img src="https://i.imgur.com/e8KL7xj.png" /></p>
 
 # Image Encoder
 
@@ -18,7 +18,7 @@ git clone https://github.com/marcusfrdk/image-encoder.git
 
 ### Manual Download
 
-![How to download the repository](https://i.imgur.com/BsmZ4qH.png)
+![How to download the repository](https://i.imgur.com/iRoazjY.png)
 
 ## How to use
 
