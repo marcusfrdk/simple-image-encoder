@@ -18,31 +18,6 @@ def extract_path(path: str) -> tuple:
     return name, extension
 
 
-def encode(args: dict, input: str) -> None:
-    try:
-        lines = open(args.path, "rb").readlines()
-        name, extension = extract_path(args.path)
-
-        new_name = name + "-encoded" + f".{extension}"
-        number = 1
-
-        if args.name:
-            new_name = args.name + f".{extension}"
-        else:
-            # Make sure file does not exist
-            while os.path.exists(new_name):
-                new_name = name + "-encoded" + f"-{number}" + f".{extension}"
-                number += 1
-
-        # Encoode file
-        with open(new_name, "wb") as encoded_image:
-            encoded_image.writelines(lines)
-            encoded_image.write(bytes(input, "utf-8"))
-            encoded_image.close()
-    except:
-        print("Failed to encode image, please try again.")
-
-
 def get_output_name(args: dict) -> str:
     name, extension = extract_path(args.image)
 
