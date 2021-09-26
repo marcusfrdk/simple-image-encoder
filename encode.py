@@ -11,28 +11,17 @@ def get_arguments() -> dict:
 
 
 def extract_path(path: str) -> tuple:
-    prepath = ""
-    name = ""
-    extension = ""
+    sections = path.split(".")[-2:]
+    name = sections[0].split("/")[-1]
+    extension = sections[-1]
 
-    # Get prepath
-    if "/" in path:
-        prepath = "".join([f"{x}/" for x in path.split("/")[0:-1]])
-
-    # Get name
-    if "." in path:
-        name = path.split(".")[-2].replace("/", "")
-
-        # Get extension
-        extension = path.split(".")[-1]
-
-    return prepath, name, extension
+    return name, extension
 
 
 def encode(args: dict, input: str) -> None:
     try:
         lines = open(args.path, "rb").readlines()
-        prepath, name, extension = extract_path(args.path)
+        name, extension = extract_path(args.path)
 
         new_name = name + "-encoded" + f".{extension}"
         number = 1
@@ -55,7 +44,7 @@ def encode(args: dict, input: str) -> None:
 
 
 def get_output_name(args: dict) -> str:
-    prepath, name, extension = extract_path(args.image)
+    name, extension = extract_path(args.image)
 
     new_name = name + "-encoded" + f".{extension}"
     number = 1
