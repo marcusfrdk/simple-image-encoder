@@ -16,7 +16,7 @@ I have only used Python 3.9 with standard libraries. It should work for any Pyth
 git clone https://github.com/marcusfrdk/image-encoder.git
 ```
 
-### Download
+### Manual Download
 
 ![How to download the repository](https://i.imgur.com/BsmZ4qH.png)
 
@@ -40,21 +40,21 @@ python3 decode.py path/to/image
 
 ### Encode
 
-| Flag       | Description                                         | Required |
-| ---------- | --------------------------------------------------- | -------- |
-| path       | The path to the source image.                       | Yes      |
-| data       | The data to be encoded, can be a path or a string.  | Yes      |
-| -n, --name | Set the output file's name.                         | No       |
+| Flag       | Description                                         | Required | Type            |
+| ---------- | --------------------------------------------------- | -------- | --------------- |
+| path       | The path to the source image.                       | Yes      | path            |
+| data       | The data to be encoded, can be a path or a string.  | Yes      | path or string  |
+| -n, --name | Set the output file's name.                         | No       | string          |
 
 ### Decode
 
-| Flag                   | Description                          | Required  |
-| ---------------------- | ------------------------------------ | --------- |
-| path                   | The path to the image                |  Yes      |
-| -a, --all              | Output the entire message            | No        |
-| -t, --time             | Outputs the time it was encoded      | No        |
-| -b, --build            | Rebuilds an encoded file             | No        |
-| -re, --remove-encoding | Removed the encoded data from a file | No        |
+| Flag                   | Description                          | Required  | Type    |
+| ---------------------- | ------------------------------------ | --------- | ------- |
+| path                   | The path to the image                | Yes       | path    |
+| -a, --all              | Output the entire message            | No        | boolean |
+| -t, --time             | Outputs the time it was encoded      | No        | boolean |
+| -b, --build            | Rebuilds an encoded file             | No        | boolean |
+| -re, --remove-encoding | Removed the encoded data from a file | No        | boolean |
 
 ## FAQ
 
@@ -77,6 +77,11 @@ Of course! I would be more than happy if you would do that.
 - [ ] Containerize functions and simplify functionality.
 - [ ] Unit testing among other tests
 - [ ] Support more file types, such as audio, video and text files.
+
+## Notes
+
+- I've only tested this on Linux (Ubuntu 20.04) and MacOS (Big sur). It might not work fully as expected on Windows. I will test this as soon as possible.
+- This project is only for fun and should never be used in production or mission critical projects.
 
 ## Credits
 
