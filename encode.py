@@ -56,13 +56,14 @@ def parse_data(data: str) -> str:
 def format_data(data: str) -> bytes:
     """ Formats the data to the optimal format """
     is_file = os.path.isfile(data)
-    file_type = data.split(".")[-1] if "." in data and is_file else ""
+    file_name, file_type = extract_path(data)
     encoded_at = time.time()
 
     print("Encoding file..." if file_type else "Encoding string...")
 
     return bytes(str({
         "file_type": file_type,
+        "file_name": file_name,
         "encoded_at": encoded_at,
         "data": parse_data(data)
     }), "utf-8")
