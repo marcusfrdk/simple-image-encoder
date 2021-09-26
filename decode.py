@@ -1,7 +1,6 @@
 import os
 import argparse
 import ast
-import traceback
 
 def get_arguments() -> dict:
     parser = argparse.ArgumentParser(description="Decode an encoded image.", usage="decode.py image")
@@ -62,16 +61,23 @@ def remove_encoding(path: str) -> None:
 
         print("Encoding removed...")
     except Exception:
-        traceback.print_exc()
         print("Failed to remove encoding.")
+
 
 def build(data: dict) -> None:
     file_name = data["file_name"]
     file_type = data["file_type"]
     if file_name and file_type and data["data"]:
+        # Avoid naming collisions
+        output_name = f"{file_name}.{file_type}"
+        if os.path.exists(output_name):
+            output_name = f"{file_name}-rebuild.{file_type}"
+
         with open(f"{file_name}-rebuild.{file_type}", "w") as f:
             f.write(data["data"])
             f.close()
+        
+        print(f"File {output_name} built.")
     else:
         print("No file encoded.")
 
