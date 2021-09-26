@@ -2,7 +2,7 @@
 
 # Image Encoder
 
-Encode or decode images with a simple command. Embed strings or entire files in a image. All without noticing a difference in the image.
+Embed strings or entire files in a image. All without noticing a difference in the image.
 
 ## Requirements
 
@@ -25,7 +25,7 @@ git clone https://github.com/marcusfrdk/image-encoder.git
 ### Encode
 
 ```sh
-python3 encode.py path/to/image data
+python encode.py path data
 ```
 
 - data - if the string is equal to a path where a jpg, jpeg or png file exists. It will read the file and encode this as the data. Otherwise it will take whatever string you supply.
@@ -33,7 +33,29 @@ python3 encode.py path/to/image data
 ### Decode
 
 ```sh
-python3 decode.py path/to/image
+python decode.py path
+```
+
+## Example
+
+### Encoding strings
+
+```sh
+python encode.py example.jpg "Hello World"
+# Encoding string...
+```
+
+### Encoding files
+
+```sh
+python encode.py example.jpg example.txt
+# Encoding file...
+```
+
+### Decoding files
+
+```sh
+python decode.py example-encoded.jpg
 ```
 
 ## Flags
