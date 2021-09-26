@@ -2,45 +2,83 @@
 
 # Image Encoder
 
-Encode a string or a file to an image.
+Encode or decode images with a simple command. Embed strings or entire files in a image. All without noticing a difference in the image.
 
 ## Requirements
 
-- Python 3 or greater
+I have only used Python 3.9 with standard libraries. It should work for any Python 3.X version running Windows, MacOS or Linux.
+
+## Installation
+
+### Git
+
+```sh
+git clone https://github.com/marcusfrdk/image-encoder.git
+```
+
+### Download
+
+![How to download the repository](https://i.imgur.com/BsmZ4qH.png)
 
 ## How to use
 
 ### Encode
 
-```bash
-python3 encode.py PATH
+```sh
+python3 encode.py path/to/image data
 ```
 
-#### Required Flags
-
-_One of the following._
-
-- -s, --string -> String to be encoded
-- -f, --file -> File to be encoded
-
-#### Optional Flags
-
-- -n, --name -> Name of the output file, will overwrite a file if it exists.
+- data - if the string is equal to a path where a jpg, jpeg or png file exists. It will read the file and encode this as the data. Otherwise it will take whatever string you supply.
 
 ### Decode
 
-```bash
-python3 decode.py PATH
+```sh
+python3 decode.py path/to/image
 ```
+
+## Flags
+
+### Encode
+
+| Flag       | Description                                         | Required |
+| ---------- | --------------------------------------------------- | -------- |
+| path       | The path to the source image.                       | Yes      |
+| data       | The data to be encoded, can be a path or a string.  | Yes      |
+| -n, --name | Set the output file's name.                         | No       |
+
+### Decode
+
+| Flag                   | Description                          | Required  |
+| ---------------------- | ------------------------------------ | --------- |
+| path                   | The path to the image                |  Yes      |
+| -a, --all              | Output the entire message            | No        |
+| -t, --time             | Outputs the time it was encoded      | No        |
+| -b, --build            | Rebuilds an encoded file             | No        |
+| -re, --remove-encoding | Removed the encoded data from a file | No        |
+
+## FAQ
+
+### What can this be used for?
+
+Encoding files with data ([steganography](https://en.wikipedia.org/wiki/Steganography)) can be used for many things, but it is primarily used for hiding messages. Allowing only people who know how to decode it to read the message.
+
+### How does it work?
+
+Steganography can be done in many ways, but this implementation simply appends the message after the "FF D9" hex code, which is the official end to any image file. Meaning the image won't be affected.
+
+### Can I contribute code?
+
+Of course! I would be more than happy if you would do that.
 
 ## Todo
 
-- [ ] If encoding a file that is already encoded, overwrite the encoded content
-- [ ] Add support for encoding a file type and creating a file with that type and content.
-- [ ] Add support for files with multiple dots
-- [ ] Add support for embedding images in other images
+- [ ] Encrypt the encoded messages
+- [ ] Add a simple local webserver people can use instead of the terminal.
+- [ ] Containerize functions and simplify functionality.
+- [ ] Unit testing among other tests
+- [ ] Support more file types, such as audio, video and text files.
 
-## Credit
+## Credits
 
 ### Example image
 
