@@ -13,9 +13,14 @@ def get_arguments() -> dict:
 
 def extract_path(path: str) -> tuple:
     """ Extracts information from a path """
-    sections = path.split(".")[-2:]
-    name = sections[0].split("/")[-1]
-    extension = sections[-1]
+
+    name = ""
+    extension = ""
+
+    if os.path.isfile(path):
+        sections = path.split(".")[-2:]
+        name = sections[0].split("/")[-1]
+        extension = sections[-1]
 
     return name, extension
 
@@ -55,11 +60,11 @@ def parse_data(data: str) -> str:
 
 def format_data(data: str) -> bytes:
     """ Formats the data to the optimal format """
-    is_file = os.path.isfile(data)
+
     file_name, file_type = extract_path(data)
     encoded_at = time.time()
 
-    print("Encoding file..." if file_type else "Encoding string...")
+    print("Encoding file..." if file_name and file_type else "Encoding string...")
 
     return bytes(str({
         "file_type": file_type,
