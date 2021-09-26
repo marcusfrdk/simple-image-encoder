@@ -54,17 +54,21 @@ def encode(args: dict, input: str) -> None:
         print("Failed to encode image, please try again.")
 
 
-# def get_encoded_data(image: str) -> str:
-#     encoded_data = ""
+def get_output_name(args: dict) -> str:
+    prepath, name, extension = extract_path(args.image)
 
-#     with open(image, "rb") as f:
-#         content = f.read()
-#         offset = content.index(bytes.fromhex("FFD9"))
+    new_name = name + "-encoded" + f".{extension}"
+    number = 1
 
-#         f.seek(offset + 2)
-#         encoded_data = bytes.decode(f.read())
+    if args.name:
+        new_name = args.name + f".{extension}"
+    else:
+        # Make sure file does not exist
+        while os.path.exists(new_name):
+            new_name = name + "-encoded" + f"-{number}" + f".{extension}"
+            number += 1
 
-#     return encoded_data
+    return new_name
 
 
 def parse_data(data: str) -> str:
@@ -80,6 +84,8 @@ def format_data(data: str) -> bytes:
     is_file = os.path.isfile(data)
     file_type = data.split(".")[-1] if "." in data and is_file else ""
     encoded_at = time.time()
+
+    print("Encoding file..." if file_type else "Encoding string...")
 
     return bytes(str({
         "file_type": file_type,
@@ -100,6 +106,7 @@ def validate_image(path: str) -> bool:
 
 def encode_image(args: dict)  -> None:
     data = format_data(args.data)
+    name = get_output_name(args)
 
     # Get image and remove encoding
     image = ""
@@ -109,7 +116,7 @@ def encode_image(args: dict)  -> None:
         image = content[0:offset]
         of.close()
 
-    with open("test.jpg", "wb") as nf:
+    with open(name, "wb") as nf:
         nf.write(image + data)
         nf.close()
 
@@ -122,7 +129,6 @@ def main() -> None:
     else:
         print("Image is not valid.")
         
-
 
 if __name__ == "__main__":
     main()
