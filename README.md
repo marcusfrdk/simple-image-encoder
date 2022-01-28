@@ -4,7 +4,7 @@
 
 Embed strings or entire files in a image. All without noticing a difference in the image.
 
-_Note: This is NOT meant for encryption, all data is CLEARTEXT and fully visible for anyone who checks the source code of the image._
+___Note: This is NOT meant for encryption, all data is CLEARTEXT and fully visible for anyone who checks the source code of the image.___
 
 ## Requirements
 
