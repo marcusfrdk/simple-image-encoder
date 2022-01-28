@@ -4,6 +4,8 @@
 
 Embed strings or entire files in a image. All without noticing a difference in the image.
 
+_Note: This is NOT meant for encryption, all data is CLEARTEXT and fully visible for anyone who checks the source code of the image._
+
 ## Requirements
 
 I have only used Python 3.9 with standard libraries. It should work for any Python 3.X version running Windows, MacOS or Linux.
